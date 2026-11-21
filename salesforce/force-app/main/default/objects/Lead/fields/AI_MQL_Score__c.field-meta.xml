@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AI_MQL_Score__c</fullName>
+    <label>AI MQL Score</label>
+    <description>0-100 score staged by the MQL agent. Written only by the MQL Agent Write integration.</description>
+    <inlineHelpText>AI score, staged after policy checks or human approval. See AI Rationale.</inlineHelpText>
+    <type>Number</type>
+    <precision>3</precision>
+    <scale>0</scale>
+    <required>false</required>
+    <externalId>false</externalId>
+    <trackHistory>false</trackHistory>
+</CustomField>

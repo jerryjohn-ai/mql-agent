@@ -1,0 +1,75 @@
+{
+ "_note": "SYNTHETIC demo values standing in for a vendor enrichment cache (Clearbit/ZoomInfo). Not real company data.",
+ "fcof.net": {
+  "industry": "Agriculture",
+  "employee_count": 1200,
+  "annual_revenue": 900000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "jackson.com": {
+  "industry": "Manufacturing",
+  "employee_count": 2300,
+  "annual_revenue": 410000000.0,
+  "hq_country": "Taiwan",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "metro.com": {
+  "industry": "Healthcare",
+  "employee_count": 8500,
+  "annual_revenue": 1200000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "emersontransport.com": {
+  "industry": "Transportation",
+  "employee_count": 3100,
+  "annual_revenue": 600000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "delphi.chemicals.com": {
+  "industry": "Chemicals",
+  "employee_count": 600,
+  "annual_revenue": 150000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "westerntelecom.com": {
+  "industry": "Telecommunications",
+  "employee_count": 4000,
+  "annual_revenue": 900000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "greenwich.net": {
+  "industry": "Media",
+  "employee_count": 180,
+  "annual_revenue": 20000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "pacificretail.com": {
+  "industry": "Retail",
+  "employee_count": 900,
+  "annual_revenue": 250000000.0,
+  "hq_country": "USA",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ },
+ "northwindenergy.co.uk": {
+  "industry": "Energy",
+  "employee_count": 6200,
+  "annual_revenue": 2100000000.0,
+  "hq_country": "United Kingdom",
+  "as_of": "2026-11-01",
+  "source": "demo-cache"
+ }
+}

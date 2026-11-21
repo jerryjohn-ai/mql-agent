@@ -1,0 +1,52 @@
+# Routing policy. Owned by Sales + RevOps. Every change bumps `version`,
+# which is stamped on every audit record.
+version: policy-v1
+
+thresholds:
+  auto_route_min_score: 80        # rule 5: score >= this ...
+  auto_disqualify_max_score: 49   # rule 6: score <= this ...
+  min_confidence: 0.85            # ... and blended confidence >= this
+
+# Rule 3: these domains always go to a human (strategic / target accounts).
+# uos.com is United Oil & Gas in the Trailhead sample data.
+strategic_domains:
+  - uos.com
+
+consent:
+  # Leads arriving as form submissions must carry an explicit marketing consent flag.
+  require_explicit_for_form_leads: true
+  # Leads already in Salesforce are treated as having a lawful basis unless
+  # HasOptedOutOfEmail is true. Confirm this with Legal before real use.
+  crm_leads_assume_basis: true
+
+spam:
+  disposable_domains:
+    - mailinator.com
+    - guerrillamail.com
+    - 10minutemail.com
+    - tempmail.com
+    - yopmail.com
+  honeypot_field: website_url_hp   # hidden form field; humans leave it empty
+
+limits:
+  max_free_text_chars: 2000
+  max_tool_calls: 6
+  tool_timeout_seconds: 3
+  approval_token_ttl_seconds: 900
+
+# Inputs that count toward deterministic data completeness (blended confidence).
+completeness_inputs:
+  - industry
+  - employees
+  - annual_revenue
+  - country
+  - title
+  - intent_signal
+
+# Lead sources that count as an intent signal when there is no free text.
+intent_lead_sources:
+  - Web
+  - Phone Inquiry
+  - Partner Referral
+
+write_back_on_nurture: false

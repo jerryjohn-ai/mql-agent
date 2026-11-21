@@ -1,0 +1,16 @@
+{
+ "source": "form",
+ "form_id": "demo-request",
+ "submitted_at": "2026-11-20T21:00:00Z",
+ "consent": {
+  "marketing": true
+ },
+ "lead_source": "Web",
+ "email": "cfo.office@uos.com",
+ "first_name": "Dana",
+ "last_name": "Ruiz",
+ "company": "United Oil & Gas Corp.",
+ "title": "VP, Facilities",
+ "country": "United States",
+ "free_text": "Evaluating standby power for two refinery sites next year."
+}

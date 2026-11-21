@@ -1,0 +1,16 @@
+{
+ "source": "form",
+ "form_id": "demo-request",
+ "submitted_at": "2026-11-20T21:00:00Z",
+ "consent": {
+  "marketing": true
+ },
+ "lead_source": "Web",
+ "email": "ops.director@northwindenergy.co.uk",
+ "first_name": "Priya",
+ "last_name": "Shah",
+ "company": "Northwind Energy",
+ "title": "SVP, Operations",
+ "country": "United Kingdom",
+ "free_text": "We run 14 substations across the north of England and had three outages last winter. We need backup generation in place at 6 sites before October and want pricing for the GC5000 series."
+}

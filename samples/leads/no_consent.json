@@ -1,0 +1,12 @@
+{
+ "source": "form",
+ "form_id": "demo-request",
+ "submitted_at": "2026-11-20T21:00:00Z",
+ "consent": {
+  "marketing": false
+ },
+ "lead_source": "Web",
+ "email": "someone@northwindenergy.co.uk",
+ "company": "Northwind Energy",
+ "title": "Engineer"
+}
