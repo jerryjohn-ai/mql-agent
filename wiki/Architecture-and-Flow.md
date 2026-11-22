@@ -175,7 +175,7 @@ sequenceDiagram
             S->>A: optional extra read tool calls
             A-->>S: results
         end
-        S-->>G: submit_score (validated; citations checked)
+        S-->>G: submit_score (validated, citations checked)
         G->>R: completeness + policy_route
         R-->>G: auto_route | hitl | auto_disqualify
     end
