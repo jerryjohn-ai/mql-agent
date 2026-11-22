@@ -102,6 +102,46 @@ No application code change is needed for any of these.
 - For Salesforce, use JWT bearer authentication with the signing certificate stored in Key Vault, instead of a stored password.
 - Rotation: set expiry dates and subscribe to Event Grid near-expiry events. Third-party secrets such as an Anthropic key need a script, for example an Azure Function triggered by that event.
 
+### How Entra ID authentication works
+
+Entra ID authentication does not apply an API key. It replaces the key with a short-lived token that Azure issues to the workload's identity, so there is no long-lived secret to store or rotate.
+
+1. **The workload has an identity.** A managed identity is attached to the container app, pod or VM. There is no password to manage.
+2. **The app asks for a token.** Code on that host calls the local Instance Metadata Service (or the workload identity federation flow on AKS) and requests a token for one specific resource. Azure verifies the request comes from that host and returns a signed JWT (OAuth 2.0).
+3. **The app calls the service with the token**, sent as `Authorization: Bearer <token>`. This is where an API key would normally go.
+4. **The service validates it.** It checks the signature and expiry, then checks that the identity has an RBAC role on that resource.
+5. **Tokens expire**, typically after about an hour. The SDK caches and refreshes them, so application code does not handle renewal.
+
+A stolen token expires quickly, and the identity only works from the host it is attached to.
+
+| Step | Where |
+| --- | --- |
+| Create or enable a managed identity on each service | Azure portal or CLI |
+| Grant that identity a role on the target resource (Key Vault, database, model resource) | Access control (IAM) on that resource |
+| Make the code request tokens with the Azure credential library | Application code |
+
+```python
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+credential = DefaultAzureCredential()
+token_provider = get_bearer_token_provider(credential, "<scope for the target service>/.default")
+# Pass token_provider to the client. It fetches and refreshes tokens automatically.
+```
+
+`DefaultAzureCredential` uses the managed identity in Azure and falls back to your `az login` session on a laptop, so the same code works in both places. The scope names the target service, and a token for one service cannot be used on another.
+
+**Where it applies in this project**
+
+| Target | Authentication |
+| --- | --- |
+| Key Vault | Entra token. No bootstrap secret is needed. |
+| PostgreSQL Flexible Server | Entra token used in place of the database password |
+| Claude through Microsoft Foundry | Entra token, as in the sketch below (scope, role name and SDK class unverified) |
+| Direct Anthropic API | **Not Entra.** Anthropic issues API keys, so the key stays in Key Vault and the managed identity only fetches it at startup. |
+| Salesforce | **Not Entra.** Use JWT bearer authentication with the certificate in Key Vault. |
+
+For local development, run `az login`. Your user needs the same role assignments as the managed identity, so grant roles to a security group containing both the developers and the dev identities.
+
 ### Claude on Azure
 
 The repo supports `anthropic` (direct API) and `bedrock`. Anthropic models have also been offered through Microsoft Foundry, where authentication can use Entra ID through a managed identity instead of a stored key. **Verify current availability, regions and model names in Microsoft's documentation before relying on this.**
