@@ -75,16 +75,16 @@ Arrows read "imports / depends on". Built from the actual `import` statements.
 flowchart TD
     cli[cli.py] --> audit[audit.py]
     cli --> settings[settings.py]
-    cli -. "lazy import" .-> graph[graph.py]
+    cli -. "lazy import" .-> graph_py[graph.py]
 
-    graph --> approval[approval.py]
-    graph --> audit
-    graph --> llm[llm.py]
-    graph --> mcp_tools[mcp_tools.py]
-    graph --> models[models.py]
-    graph --> preflight[preflight.py]
-    graph --> router[router.py]
-    graph --> settings
+    graph_py --> approval[approval.py]
+    graph_py --> audit
+    graph_py --> llm[llm.py]
+    graph_py --> mcp_tools[mcp_tools.py]
+    graph_py --> models[models.py]
+    graph_py --> preflight[preflight.py]
+    graph_py --> router[router.py]
+    graph_py --> settings
 
     llm --> mcp_tools
     llm --> models
